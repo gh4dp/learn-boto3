@@ -8,7 +8,8 @@ class ConnectAWS:
         We will add some more generic code about aws into this same class.
         This was the future version of the class may not be strictly about connecting to aws.
     """
-    def __init__(self, profname):
+    def __init__(self, profname: str):
+        """ Specified type for refence using annotations profname: str """
         self.profName = profname
         self.connection = None
 
