@@ -1,5 +1,5 @@
 import boto3
-
+import pprintpp
 
 class ConnectAWS:
     """ Provide a profile name in the instance creation and connect to aws.
@@ -21,7 +21,14 @@ class ConnectAWS:
             print('Not connected')
             pass
 
+    def get_regions(self):
+        """Let's get all the regions within AWS"""
+        sess = boto3.session.Session()
+        allregions = sess.get_available_regions(service_name='ec2', allow_non_regional=True)
+        pprintpp.pprint(allregions)
+
 
 if __name__ == "__main__":
     aconn = ConnectAWS('dpdrpkri01')
     aconn.connect()
+    aconn.get_regions()
