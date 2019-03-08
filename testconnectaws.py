@@ -2,6 +2,12 @@ import boto3
 
 
 class ConnectAWS:
+    """Provide a profile name in the instance creation and connect to aws."""
+
+    """ For now, we start with connection to the aws. 
+        We will add some more generic code about aws into this same class.
+        This was the future version of the class may not be strictly about connecting to aws. 
+    """
     def __init__(self, profname):
         self.profName = profname
         self.connection = None
