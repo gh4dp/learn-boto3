@@ -17,7 +17,7 @@ class ConnectAWS:
         try:
             self.connection = boto3.Session(profile_name=self.profName)
             print('************** connected!')
-        except:
+        except Exception:
             print('Not connected')
             pass
 
