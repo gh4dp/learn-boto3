@@ -6,16 +6,18 @@ class QueryHTML:
     def __init__(self, url):
         self.URL = url
         self.http = None
-        self.html_obj =None
+        self.html_obj = None
         self.b4soup=None
         self.parsered_tree = None
         self.parser = AdvancedHTMLParser.AdvancedHTMLParser()
 
     def get_url(self):
-        self.http = urllib3.poolmanager()
-        self.html_obj = self.http.request('GET',self.URL)
+        self.http = urllib3.PoolManager()
+        self.html_obj = self.https.request('GET', self.URL)
         self.parsered_tree = self.parser.parseStr(self.html_obj)
+        pprintpp.pprint(self.parsered_tree)
 
-    def getTagData(self,tag_pattern):
-        for anode in self.parsered_tree.getAllNodes()
+    def get_tag_data(self, tag_pattern):
+        for anode in self.parsered_tree.getAllNodes():
             pprintpp.pprint(anode)
+        print('Ends')
