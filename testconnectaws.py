@@ -1,5 +1,7 @@
 import boto3
 import pprintpp, secrets, datetime
+import QueryHTML
+
 
 class ConnectAWS:
     """ Provide a profile name in the instance creation and connect to aws.
@@ -51,7 +53,12 @@ class ConnectAWS:
 
 
 if __name__ == "__main__":
-    aconn = ConnectAWS('dpdrpkri01')
-    aconn.connect()
-    aconn.get_regions()
-    aconn.create_rds()
+    #aconn = ConnectAWS('dpdrpkri01')
+    #aconn.connect()
+    #aconn.get_regions()
+    #aconn.create_rds()
+    q_html = QueryHTML.QueryHTML('https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstance.html')
+    q_html.get_url()
+    q_html.getTagData()
+
+
