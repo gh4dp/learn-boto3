@@ -1,4 +1,4 @@
-import urllib3, bs4, pprintpp, AdvancedHTMLParser
+import urllib3, bs4, pprintpp, re
 
 class QueryHTML:
     """Provide URL first and create an HTML object, then query for specific tags as you please."""
@@ -7,17 +7,25 @@ class QueryHTML:
         self.URL = url
         self.http = None
         self.html_obj = None
-        self.b4soup=None
-        self.parsered_tree = None
-        self.parser = AdvancedHTMLParser.AdvancedHTMLParser()
+        self.soup = None
+        self.parser = None
 
     def get_url(self):
+        urllib3.disable_warnings()
         self.http = urllib3.PoolManager()
-        self.html_obj = self.https.request('GET', self.URL)
-        self.parsered_tree = self.parser.parseStr(self.html_obj)
-        pprintpp.pprint(self.parsered_tree)
+        self.html_obj = self.http.request('GET', self.URL)
+        pprintpp.pprint(self.html_obj)
+        print('Pause...')
+        self.soup = bs4.BeautifulSoup(self.html_obj, features="lxml")
+        pprintpp.pprint(self.soup.data)
+        print('Ends')
 
     def get_tag_data(self, tag_pattern):
-        for anode in self.parsered_tree.getAllNodes():
-            pprintpp.pprint(anode)
+        #test_pat='<dt>[.*]<b>(.*)</b></span></dt>'
+        #test_pat2='<dd><p>[.*]</p><p>[.*]</p><p>Required: Yes</p></dd>'
+        required_tags = self.soup.find_all(re.compile(tag_pattern))
+        for a_req_tag in required_tags:
+            pprintpp.pprint(a_req_tag)
+            print(a_req_tag.previous_sibling)
+            print(a_req_tag.next_sibling)
         print('Ends')

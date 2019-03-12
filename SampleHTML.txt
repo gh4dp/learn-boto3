@@ -1,0 +1,2856 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>CreateDBInstance - Amazon Relational Database Service</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="home" href="#top" />
+      <link rel="up" href="API_Operations.html" title="Actions" />
+      <link rel="prev" href="API_CreateDBClusterSnapshot.html" title="CreateDBClusterSnapshot" />
+      <link rel="next" href="API_CreateDBInstanceReadReplica.html" title="CreateDBInstanceReadReplica" />
+      <meta name="description" content="Creates a new DB instance." />
+      <meta name="keywords" content="API,requests,CreateDBInstance" />
+      <meta name="deployment_region" content="IAD" />
+      <meta name="product" content="Amazon Relational Database Service" />
+      <meta name="guide" content="API Reference" />
+      <meta name="guide-locale" content="en_us" />
+      <meta name="tocs" content="toc-contents.json" />
+      <link rel="icon" type="image/ico" href="/images/favicon.ico" />
+      <link rel="shortcut icon" type="image/ico" href="/images/favicon.ico" />
+      <link rel="canonical" href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstance.html" />
+      <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css" />
+      <link rel="stylesheet" type="text/css" href="/font/css/font-awesome.min.css" />
+      <link rel="stylesheet" type="text/css" href="/css/google-font.css" />
+      <link id="code-style" rel="stylesheet" type="text/css" href="/css/code/light.css" />
+      <link rel="stylesheet" type="text/css" href="/css/jquery-ui.theme.css" />
+      <link rel="stylesheet" type="text/css" href="/css/colorbox.css" />
+      <link rel="stylesheet" type="text/css" href="/css/awsdocs.css?v=20181221" /><script type="text/javascript" src="/js/highlight.pack.js"></script><script type="text/javascript" src="/js/jquery.min.js"></script><script type="text/javascript" src="/js/jquery-ui.min.js"></script><script type="text/javascript" src="/js/jquery.colorbox.js"></script><script type="text/javascript" src="/js/awsdocs.min.js?v=20181221"></script></head>
+   <body id="top">
+      <div xmlns:db="http://docbook.org/ns/docbook" id="aws-nav" class="aws-nav-header">
+         <div class="aws-nav-header-left">
+            <div class="aws-nav-logo">
+               <!--aws_logo_105x39.png--><a href="http://aws.amazon.com"><img src="/images/aws_logo_105x39.png" alt="Amazon Web Services" /></a></div>
+         </div>
+         <div id="aws-nav-header-right" class="aws-nav-header-right">
+            <div class="aws-nav-cta-button-outer"><a id="aws-nav-cta-button" class="aws-nav-button" href="https://console.aws.amazon.com/console/home">Sign In to the Console</a></div>
+            <div class="aws-nav-popover-trigger" data-dropdown="aws-nav-dropdown-lang"><select id="languageSelection" onchange="SelectLanguage()">
+                  <option value="/de_de/AmazonRDS/latest/APIReference/API_CreateDBInstance.html">Deutsch</option>
+                  <option value="/en_us/AmazonRDS/latest/APIReference/API_CreateDBInstance.html" selected="selected">English</option>
+                  <option value="/es_es/AmazonRDS/latest/APIReference/API_CreateDBInstance.html">Español</option>
+                  <option value="/fr_fr/AmazonRDS/latest/APIReference/API_CreateDBInstance.html">Français</option>
+                  <option value="/it_it/AmazonRDS/latest/APIReference/API_CreateDBInstance.html">Italiano</option>
+                  <option value="/ja_jp/AmazonRDS/latest/APIReference/API_CreateDBInstance.html">日本語</option>
+                  <option value="/ko_kr/AmazonRDS/latest/APIReference/API_CreateDBInstance.html">한국어</option>
+                  <option value="/pt_br/AmazonRDS/latest/APIReference/API_CreateDBInstance.html">Português</option>
+                  <option value="/zh_cn/AmazonRDS/latest/APIReference/API_CreateDBInstance.html">中文 (简体)</option>
+                  <option value="/zh_tw/AmazonRDS/latest/APIReference/API_CreateDBInstance.html">中文 (繁體)</option></select></div><a class="btn btn-pdf-link" id="pdf-link-top" href="rds-api.pdf#API_CreateDBInstance" target="_blank" title="Open PDF"></a><div id="aws-nav-quicklinks-separator" class="aws-nav-quicklinks-separator">
+               <div class="aws-nav-left"></div>
+               <div class="aws-nav-right"></div>
+            </div>
+         </div>
+      </div>
+      <div id="content-container">
+         <div id="left-column">
+            <div id="left-col-header">
+               <div xmlns:db="http://docbook.org/ns/docbook" id="left-col-top-content">
+                  <div id="service-name">Amazon Relational Database Service </div>
+                  <div id="search"><i id="search-icon" class="fa fa-search fa-2x"></i></div>
+                  <div id="guide-info">API Reference (API Version 2014-10-31)
+                     <div id="content-button"><i id="toggle-contents" class="fa fa-bars"></i></div>
+                  </div>
+               </div>
+               <form id="finegrainedSearch" method="get" onsubmit="return searchFormSubmit(this);" action="/search/doc-search.html">
+                  <div id="search-form"><select id="search-select" name="searchPath">
+                        <option value="all">Entire Site</option>
+                        <option value="AWSMarketplace">AMIs from AWS Marketplace</option>
+                        <option value="amis">AMIs from All Sources</option>
+                        <option value="articles">Articles &amp; Tutorials</option>
+                        <option value="products_and_info">AWS Product Information</option>
+                        <option value="case_studies">Case Studies</option>
+                        <option value="customerapps">Customer Apps</option>
+                        <option value="documentation">Documentation</option>
+                        <option value="documentation-product">Documentation - This Product</option>
+                        <option value="documentation-guide" selected="selected">Documentation - This Guide</option>
+                        <option value="datasets">Public Data Sets</option>
+                        <option value="releasenotes">Release Notes</option>
+                        <option value="solution_providers">Partners</option>
+                        <option value="code">Sample Code &amp; Libraries</option></select><br /><input id="search-query" name="searchQuery" type="text" placeholder="Search" /><input id="search-button" src="/images/search-button.png" alt="Go" type="image" /></div><input type="hidden" name="this_doc_product" id="this_doc_product" value="Amazon Relational Database Service" /><input type="hidden" name="this_doc_guide" id="this_doc_guide" value="API Reference" /><input type="hidden" name="doc_locale" value="en_us" /></form>
+            </div>
+            <div id="toc"></div>
+         </div>
+         <div id="main-column">
+            <div id="main">
+               <div id="main-content">
+                  <div id="main-col-body">
+                     <table summary="Breadcrumbs">
+                        <tr>
+                           <td>
+                              <div class="breadcrumb"><a href="/index.html">AWS Documentation</a> » <a href="/rds/index.html">Amazon Relational Database Service (RDS) Documentation</a> » <a href="index.html">API Reference</a> » <a href="API_Operations.html">Actions</a> » <span class="breadcrumb">CreateDBInstance</span></div>
+                           </td>
+                        </tr>
+                     </table>
+                     <div id="language-notice">
+                        <div class="language-notice-text"></div>
+                     </div>
+                     <div></div>
+                     <h1 class="topictitle" id="API_CreateDBInstance">CreateDBInstance</h1>
+                     <p>Creates a new DB instance.</p>
+
+                     <h2 id="API_CreateDBInstance_RequestParameters">Request Parameters</h2>
+
+                     <p> For information about the parameters that are common to all actions, see <a href="CommonParameters.html">Common Parameters</a>.
+                     </p>
+
+                     <div class="variablelist">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <dl>
+
+                           <dt><span class="term">
+                                 <b>AllocatedStorage</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The amount of storage (in gibibytes) to allocate for the DB instance.</p>
+
+                              <p>Type: Integer</p>
+
+                              <p>
+                                 <b>Amazon Aurora</b>
+
+                              </p>
+
+                              <p>Not applicable. Aurora cluster volumes automatically grow as the amount of data in
+                                 your
+                                 database increases, though you are only charged for the space that you use in an Aurora
+                                 cluster volume.
+                              </p>
+
+                              <p>
+                                 <b>MySQL</b>
+
+                              </p>
+
+                              <p>Constraints to the amount of storage for each storage type are the following:
+
+                              </p>
+
+                              <div class="itemizedlist">
+
+
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>General Purpose (SSD) storage (gp2): Must be an integer from 20 to 32768.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Provisioned IOPS storage (io1): Must be an integer from 100 to 32768.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Magnetic storage (standard): Must be an integer from 5 to 3072.</p>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>
+                                 <b>MariaDB</b>
+
+                              </p>
+
+                              <p>Constraints to the amount of storage for each storage type are the following:
+
+                              </p>
+
+                              <div class="itemizedlist">
+
+
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>General Purpose (SSD) storage (gp2): Must be an integer from 20 to 32768.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Provisioned IOPS storage (io1): Must be an integer from 100 to 32768.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Magnetic storage (standard): Must be an integer from 5 to 3072.</p>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>
+                                 <b>PostgreSQL</b>
+
+                              </p>
+
+                              <p>Constraints to the amount of storage for each storage type are the following:
+
+                              </p>
+
+                              <div class="itemizedlist">
+
+
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>General Purpose (SSD) storage (gp2): Must be an integer from 20 to 32768.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Provisioned IOPS storage (io1): Must be an integer from 100 to 32768.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Magnetic storage (standard): Must be an integer from 5 to 3072.</p>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>
+                                 <b>Oracle</b>
+
+                              </p>
+
+                              <p>Constraints to the amount of storage for each storage type are the following:
+
+                              </p>
+
+                              <div class="itemizedlist">
+
+
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>General Purpose (SSD) storage (gp2): Must be an integer from 20 to 32768.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Provisioned IOPS storage (io1): Must be an integer from 100 to 32768.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Magnetic storage (standard): Must be an integer from 10 to 3072.</p>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>
+                                 <b>SQL Server</b>
+
+                              </p>
+
+                              <p>Constraints to the amount of storage for each storage type are the following:
+
+                              </p>
+
+                              <div class="itemizedlist">
+
+
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>General Purpose (SSD) storage (gp2):</p>
+
+                                       <div class="itemizedlist">
+
+
+
+                                          <ul class="itemizedlist" type="disc">
+                                             <li class="listitem">
+
+                                                <p>Enterprise and Standard editions: Must be an integer from 200 to 16384.</p>
+
+                                             </li>
+                                             <li class="listitem">
+
+                                                <p>Web and Express editions: Must be an integer from 20 to 16384.</p>
+
+                                             </li>
+                                          </ul>
+                                       </div>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Provisioned IOPS storage (io1):</p>
+
+                                       <div class="itemizedlist">
+
+
+
+                                          <ul class="itemizedlist" type="disc">
+                                             <li class="listitem">
+
+                                                <p>Enterprise and Standard editions: Must be an integer from 200 to 16384.</p>
+
+                                             </li>
+                                             <li class="listitem">
+
+                                                <p>Web and Express editions: Must be an integer from 100 to 16384.</p>
+
+                                             </li>
+                                          </ul>
+                                       </div>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Magnetic storage (standard):</p>
+
+                                       <div class="itemizedlist">
+
+
+
+                                          <ul class="itemizedlist" type="disc">
+                                             <li class="listitem">
+
+                                                <p>Enterprise and Standard editions: Must be an integer from 200 to 1024.</p>
+
+                                             </li>
+                                             <li class="listitem">
+
+                                                <p>Web and Express editions: Must be an integer from 20 to 1024.</p>
+
+                                             </li>
+                                          </ul>
+                                       </div>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>Type: Integer</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>AutoMinorVersionUpgrade</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>Indicates that minor engine upgrades are applied automatically to the DB instance
+                                 during the maintenance window.
+                              </p>
+
+                              <p>Default: <code class="code">true</code>
+
+                              </p>
+
+                              <p>Type: Boolean</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>AvailabilityZone</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>
+                                 The EC2 Availability Zone that the DB instance is created in. For information on
+                                 AWS Regions and Availability Zones, see
+                                 <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html">Regions
+                                    and Availability Zones</a>.
+
+                              </p>
+
+                              <p>Default: A random, system-chosen Availability Zone in the endpoint's AWS Region.</p>
+
+                              <p>
+                                 Example: <code class="code">us-east-1d</code>
+
+                              </p>
+
+                              <p>
+                                 Constraint: The AvailabilityZone parameter can't be specified if the MultiAZ parameter
+                                 is set to <code class="code">true</code>.
+                                 The specified Availability Zone must be in the same AWS Region as the current endpoint.
+
+                              </p>
+
+                              <p>Type: String</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>BackupRetentionPeriod</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The number of days for which automated backups are retained. Setting this parameter
+                                 to a positive number enables backups. Setting this parameter to 0 disables automated
+                                 backups.
+                              </p>
+
+                              <p>
+                                 <b>Amazon Aurora</b>
+
+                              </p>
+
+                              <p>Not applicable. The retention period for automated backups is managed by the DB
+                                 cluster. For more information, see <a href="API_CreateDBCluster.html">CreateDBCluster</a>.
+                              </p>
+
+                              <p>Default: 1</p>
+
+                              <p>Constraints:</p>
+
+                              <div class="itemizedlist">
+
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>Must be a value from 0 to 35</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Can't be set to 0 if the DB instance is a source to Read Replicas</p>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>Type: Integer</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>CharacterSetName</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>For supported engines, indicates that the DB instance should be associated with the
+                                 specified CharacterSet.
+                              </p>
+
+                              <p>
+                                 <b>Amazon Aurora</b>
+
+                              </p>
+
+                              <p>Not applicable. The character set is managed by
+                                 the DB cluster. For more information, see <a href="API_CreateDBCluster.html">CreateDBCluster</a>.
+                              </p>
+
+                              <p>Type: String</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>CopyTagsToSnapshot</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>True to copy all tags from the DB instance to snapshots of the DB instance, and otherwise
+                                 false. The default is false.
+                              </p>
+
+                              <p>
+                                 <b>Amazon Aurora</b>
+
+                              </p>
+
+                              <p>Not applicable. Copying tags to snapshots is managed by the DB cluster. Setting this
+                                 value for an Aurora DB instance has no effect on the DB cluster setting. For more
+                                 information, see <a href="API_CreateDBCluster.html">CreateDBCluster</a>.
+                              </p>
+
+                              <p>Type: Boolean</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>DBClusterIdentifier</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The identifier of the DB cluster that the instance will belong to.</p>
+
+                              <p>For information on creating a DB cluster, see <a href="API_CreateDBCluster.html">CreateDBCluster</a>.
+                              </p>
+
+                              <p>Type: String</p>
+
+                              <p>Type: String</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>DBInstanceClass</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The compute and memory capacity of the DB instance, for example, <code class="code">db.m4.large</code>.
+                                 Not all DB instance classes are available in all AWS Regions, or for all database
+                                 engines.
+                                 For the full list of DB instance classes,
+                                 and availability for your engine, see
+                                 <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html">DB Instance Class</a> in the <em>Amazon RDS User Guide.</em>
+
+                              </p>
+
+                              <p>Type: String</p>
+
+                              <p>Required: Yes</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>DBInstanceIdentifier</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The DB instance identifier. This parameter is stored as a lowercase string.</p>
+
+                              <p>Constraints:</p>
+
+                              <div class="itemizedlist">
+
+
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>Must contain from 1 to 63 letters, numbers, or hyphens.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>First character must be a letter.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Can't end with a hyphen or contain two consecutive hyphens.</p>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>Example: <code class="code">mydbinstance</code>
+
+                              </p>
+
+                              <p>Type: String</p>
+
+                              <p>Required: Yes</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>DBName</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The meaning of this parameter differs according to the database engine you use.</p>
+
+                              <p>Type: String</p>
+
+                              <p>
+                                 <b>MySQL</b>
+
+                              </p>
+
+                              <p>The name of the database to create when the DB instance is created. If this parameter
+                                 is not specified, no database is created in the DB instance.
+                              </p>
+
+                              <p>Constraints:</p>
+
+                              <div class="itemizedlist">
+
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>Must contain 1 to 64 letters or numbers.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Can't be a word reserved by the specified database engine</p>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>
+                                 <b>MariaDB</b>
+
+                              </p>
+
+                              <p>The name of the database to create when the DB instance is created. If this parameter
+                                 is not specified, no database is created in the DB instance.
+                              </p>
+
+                              <p>Constraints:</p>
+
+                              <div class="itemizedlist">
+
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>Must contain 1 to 64 letters or numbers.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Can't be a word reserved by the specified database engine</p>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>
+                                 <b>PostgreSQL</b>
+
+                              </p>
+
+                              <p>The name of the database to create when the DB instance is created. If this parameter
+                                 is not specified, the default "postgres" database is created in the DB instance.
+                              </p>
+
+                              <p>Constraints:</p>
+
+                              <div class="itemizedlist">
+
+
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>Must contain 1 to 63 letters, numbers, or underscores.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Must begin with a letter or an underscore. Subsequent characters can be letters, underscores,
+                                          or digits (0-9).
+                                       </p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Can't be a word reserved by the specified database engine</p>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>
+                                 <b>Oracle</b>
+
+                              </p>
+
+                              <p>The Oracle System ID (SID) of the created DB instance.
+                                 If you specify <code class="code">null</code>, the default value <code class="code">ORCL</code> is used.
+                                 You can't specify the string NULL, or any other reserved word, for <code class="code">DBName</code>.
+
+                              </p>
+
+                              <p>Default: <code class="code">ORCL</code>
+
+                              </p>
+
+                              <p>Constraints:</p>
+
+                              <div class="itemizedlist">
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>Can't be longer than 8 characters</p>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>
+                                 <b>SQL Server</b>
+
+                              </p>
+
+                              <p>Not applicable. Must be null.</p>
+
+                              <p>
+                                 <b>Amazon Aurora</b>
+
+                              </p>
+
+                              <p>The name of the database to create when the primary instance of the DB cluster is
+                                 created. If this parameter is not specified, no database is created in the DB instance.
+                              </p>
+
+                              <p>Constraints:</p>
+
+                              <div class="itemizedlist">
+
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>Must contain 1 to 64 letters or numbers.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Can't be a word reserved by the specified database engine</p>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>Type: String</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>DBParameterGroupName</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The name of the DB parameter group to associate with this DB instance. If this argument
+                                 is omitted, the default DBParameterGroup for the specified engine is used.
+                              </p>
+
+                              <p>Constraints:</p>
+
+                              <div class="itemizedlist">
+
+
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>Must be 1 to 255 letters, numbers, or hyphens.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>First character must be a letter</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Can't end with a hyphen or contain two consecutive hyphens</p>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>Type: String</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>DBSecurityGroups.DBSecurityGroupName.N</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>A list of DB security groups to associate with this DB instance.</p>
+
+                              <p>Default: The default DB security group for the database engine.</p>
+
+                              <p>Type: Array of strings</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>DBSubnetGroupName</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>A DB subnet group to associate with this DB instance.</p>
+
+                              <p>If there is no DB subnet group, then it is a non-VPC DB instance.</p>
+
+                              <p>Type: String</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>DeletionProtection</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>Indicates if the DB instance should have deletion protection enabled.
+                                 The database can't be deleted when this value is set to true. The default is false.
+                                 For more information, see
+                                 <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html">
+                                    Deleting a DB Instance</a>.
+
+                              </p>
+
+                              <p>Type: Boolean</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>Domain</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>Specify the Active Directory Domain to create the instance in.</p>
+
+                              <p>Type: String</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>DomainIAMRoleName</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>Specify the name of the IAM role to be used when making API calls to the Directory
+                                 Service.
+                              </p>
+
+                              <p>Type: String</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>EnableCloudwatchLogsExports.member.N</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The list of log types that need to be enabled for exporting to CloudWatch Logs. The
+                                 values
+                                 in the list depend on the DB engine being used. For more information, see
+                                 <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch">Publishing Database Logs to Amazon CloudWatch Logs </a> in the <em>Amazon Relational Database
+                                    Service User Guide</em>.
+                              </p>
+
+                              <p>Type: Array of strings</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>EnableIAMDatabaseAuthentication</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>True to enable mapping of AWS Identity and Access Management (IAM) accounts to database
+                                 accounts, and otherwise false.
+                              </p>
+
+                              <p>You can enable IAM database authentication for the following database engines:</p>
+
+                              <p>
+                                 <b>Amazon Aurora</b>
+
+                              </p>
+
+                              <p>Not applicable. Mapping AWS IAM accounts to database accounts is managed by the DB
+                                 cluster. For more information, see <a href="API_CreateDBCluster.html">CreateDBCluster</a>.
+                              </p>
+
+                              <p>
+                                 <b>MySQL</b>
+
+                              </p>
+
+                              <div class="itemizedlist">
+
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>For MySQL 5.6, minor version 5.6.34 or higher</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>For MySQL 5.7, minor version 5.7.16 or higher</p>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>Default: <code class="code">false</code>
+
+                              </p>
+
+                              <p>Type: Boolean</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>EnablePerformanceInsights</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>True to enable Performance Insights for the DB instance, and otherwise false.
+
+                              </p>
+
+                              <p>For more information, see
+                                 <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html">Using Amazon Performance Insights</a> in the <em>Amazon Relational Database Service
+                                    User Guide</em>.
+
+                              </p>
+
+                              <p>Type: Boolean</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>Engine</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The name of the database engine to be used for this instance.
+
+                              </p>
+
+                              <p>Not every database engine is available for every AWS Region.
+
+                              </p>
+
+                              <p>Valid Values:
+
+                              </p>
+
+                              <div class="itemizedlist">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>
+                                          <code class="code">aurora</code> (for MySQL 5.6-compatible Aurora)
+                                       </p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>
+                                          <code class="code">aurora-mysql</code> (for MySQL 5.7-compatible Aurora)
+                                       </p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>
+                                          <code class="code">aurora-postgresql</code>
+
+                                       </p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>
+                                          <code class="code">mariadb</code>
+
+                                       </p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>
+                                          <code class="code">mysql</code>
+
+                                       </p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>
+                                          <code class="code">oracle-ee</code>
+
+                                       </p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>
+                                          <code class="code">oracle-se2</code>
+
+                                       </p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>
+                                          <code class="code">oracle-se1</code>
+
+                                       </p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>
+                                          <code class="code">oracle-se</code>
+
+                                       </p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>
+                                          <code class="code">postgres</code>
+
+                                       </p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>
+                                          <code class="code">sqlserver-ee</code>
+
+                                       </p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>
+                                          <code class="code">sqlserver-se</code>
+
+                                       </p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>
+                                          <code class="code">sqlserver-ex</code>
+
+                                       </p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>
+                                          <code class="code">sqlserver-web</code>
+
+                                       </p>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>Type: String</p>
+
+                              <p>Required: Yes</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>EngineVersion</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The version number of the database engine to use.</p>
+
+                              <p>For a list of valid engine versions, call <a href="API_DescribeDBEngineVersions.html">DescribeDBEngineVersions</a>.
+                              </p>
+
+                              <p>The following are the database engines and links to information about the major and
+                                 minor versions that are available with
+                                 Amazon RDS. Not every database engine is available for every AWS Region.
+                              </p>
+
+                              <p>
+                                 <b>Amazon Aurora</b>
+
+                              </p>
+
+                              <p>Not applicable. The version number of the database engine to be used by the DB
+                                 instance is managed by the DB cluster. For more information, see <a href="API_CreateDBCluster.html">CreateDBCluster</a>.
+                              </p>
+
+                              <p>
+                                 <b>MariaDB</b>
+
+                              </p>
+
+                              <p>See <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MariaDB.html#MariaDB.Concepts.VersionMgmt">MariaDB on Amazon RDS Versions</a> in the
+                                 <em>Amazon RDS User Guide.</em>
+
+                              </p>
+
+                              <p>
+                                 <b>Microsoft SQL Server</b>
+
+                              </p>
+
+                              <p>See <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.FeatureSupport">Version and Feature Support on Amazon RDS</a> in the
+                                 <em>Amazon RDS User Guide.</em>
+
+                              </p>
+
+                              <p>
+                                 <b>MySQL</b>
+
+                              </p>
+
+                              <p>See <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html#MySQL.Concepts.VersionMgmt">MySQL on Amazon RDS Versions</a> in the
+                                 <em>Amazon RDS User Guide.</em>
+
+                              </p>
+
+                              <p>
+                                 <b>Oracle</b>
+
+                              </p>
+
+                              <p>See <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.Oracle.PatchComposition.html">Oracle Database Engine Release Notes</a> in the
+                                 <em>Amazon RDS User Guide.</em>
+
+                              </p>
+
+                              <p>
+                                 <b>PostgreSQL</b>
+
+                              </p>
+
+                              <p>See <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts.General.DBVersions">Supported PostgreSQL Database Versions</a> in the
+                                 <em>Amazon RDS User Guide.</em>
+
+                              </p>
+
+                              <p>Type: String</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>Iops</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The amount of Provisioned IOPS (input/output operations per second) to be initially
+                                 allocated for the DB instance.
+                                 For information about valid Iops values, see see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS">Amazon RDS Provisioned IOPS Storage to Improve Performance</a> in the <em>Amazon RDS User Guide</em>.
+
+                              </p>
+
+                              <p>Constraints: Must be a multiple between 1 and 50 of the storage amount for the DB
+                                 instance.
+
+                              </p>
+
+                              <p>Type: Integer</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>KmsKeyId</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The AWS KMS key identifier for an encrypted DB instance.</p>
+
+                              <p>The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption key.
+                                 If you are creating a DB instance with the same AWS account that owns the KMS encryption
+                                 key used to encrypt the new DB instance, then you can use the KMS key alias instead
+                                 of the ARN for the KM encryption key.
+                              </p>
+
+                              <p>
+                                 <b>Amazon Aurora</b>
+
+                              </p>
+
+                              <p>Not applicable. The KMS key identifier is managed by
+                                 the DB cluster. For more information, see <a href="API_CreateDBCluster.html">CreateDBCluster</a>.
+                              </p>
+
+                              <p>If the <code class="code">StorageEncrypted</code> parameter is true, and you do
+                                 not specify a value for the <code class="code">KmsKeyId</code> parameter, then
+                                 Amazon RDS will use your default encryption key. AWS KMS creates the
+                                 default encryption key for your AWS account. Your AWS account has a different
+                                 default encryption key for each AWS Region.
+                              </p>
+
+                              <p>Type: String</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>LicenseModel</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>License model information for this DB instance.</p>
+
+                              <p>
+                                 Valid values:  <code class="code">license-included</code> | <code class="code">bring-your-own-license</code> | <code class="code">general-public-license</code>
+
+                              </p>
+
+                              <p>Type: String</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>MasterUsername</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The name for the master user.</p>
+
+                              <p>
+                                 <b>Amazon Aurora</b>
+
+                              </p>
+
+                              <p>Not applicable. The name for the master user is managed by the DB
+                                 cluster. For more information, see <a href="API_CreateDBCluster.html">CreateDBCluster</a>.
+
+                              </p>
+
+                              <p>
+                                 <b>MariaDB</b>
+
+                              </p>
+
+                              <p>Constraints:</p>
+
+                              <div class="itemizedlist">
+
+
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>Required for MariaDB.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Must be 1 to 16 letters or numbers.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Can't be a reserved word for the chosen database engine.</p>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>
+                                 <b>Microsoft SQL Server</b>
+
+                              </p>
+
+                              <p>Constraints:</p>
+
+                              <div class="itemizedlist">
+
+
+
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>Required for SQL Server.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Must be 1 to 128 letters or numbers.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>The first character must be a letter.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Can't be a reserved word for the chosen database engine.</p>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>
+                                 <b>MySQL</b>
+
+                              </p>
+
+                              <p>Constraints:</p>
+
+                              <div class="itemizedlist">
+
+
+
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>Required for MySQL.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Must be 1 to 16 letters or numbers.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>First character must be a letter.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Can't be a reserved word for the chosen database engine.</p>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>
+                                 <b>Oracle</b>
+
+                              </p>
+
+                              <p>Constraints:</p>
+
+                              <div class="itemizedlist">
+
+
+
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>Required for Oracle.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Must be 1 to 30 letters or numbers.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>First character must be a letter.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Can't be a reserved word for the chosen database engine.</p>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>
+                                 <b>PostgreSQL</b>
+
+                              </p>
+
+                              <p>Constraints:</p>
+
+                              <div class="itemizedlist">
+
+
+
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>Required for PostgreSQL.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Must be 1 to 63 letters or numbers.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>First character must be a letter.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Can't be a reserved word for the chosen database engine.</p>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>Type: String</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>MasterUserPassword</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The password for the master user. The password can include any printable ASCII character
+                                 except "/", """, or "@".
+                              </p>
+
+                              <p>
+                                 <b>Amazon Aurora</b>
+
+                              </p>
+
+                              <p>Not applicable. The password for the master user is managed by the DB
+                                 cluster. For more information, see <a href="API_CreateDBCluster.html">CreateDBCluster</a>.
+                              </p>
+
+                              <p>
+                                 <b>MariaDB</b>
+
+                              </p>
+
+                              <p>Constraints: Must contain from 8 to 41 characters.</p>
+
+                              <p>
+                                 <b>Microsoft SQL Server</b>
+
+                              </p>
+
+                              <p>Constraints: Must contain from 8 to 128 characters.</p>
+
+                              <p>
+                                 <b>MySQL</b>
+
+                              </p>
+
+                              <p>Constraints: Must contain from 8 to 41 characters.</p>
+
+                              <p>
+                                 <b>Oracle</b>
+
+                              </p>
+
+                              <p>Constraints: Must contain from 8 to 30 characters.</p>
+
+                              <p>
+                                 <b>PostgreSQL</b>
+
+                              </p>
+
+                              <p>Constraints: Must contain from 8 to 128 characters.</p>
+
+                              <p>Type: String</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>MonitoringInterval</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The interval, in seconds, between points when Enhanced Monitoring metrics are collected
+                                 for the DB instance. To disable collecting Enhanced Monitoring metrics, specify 0.
+                                 The default is 0.
+                              </p>
+
+                              <p>If <code class="code">MonitoringRoleArn</code> is specified, then you must also set <code class="code">MonitoringInterval</code>
+                                 to a value other than 0.
+                              </p>
+
+                              <p>Valid Values: <code class="code">0, 1, 5, 10, 15, 30, 60</code>
+
+                              </p>
+
+                              <p>Type: Integer</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>MonitoringRoleArn</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The ARN for the IAM role that permits RDS to send enhanced monitoring metrics to Amazon
+                                 CloudWatch Logs. For
+                                 example, <code class="code">arn:aws:iam:123456789012:role/emaccess</code>. For information on creating a monitoring role,
+                                 go to <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.html#USER_Monitoring.OS.Enabling">Setting Up and Enabling Enhanced Monitoring</a>
+                                 in the <em>Amazon RDS User Guide</em>.
+                              </p>
+
+                              <p>If <code class="code">MonitoringInterval</code> is set to a value other than 0, then you must supply a <code class="code">MonitoringRoleArn</code> value.
+                              </p>
+
+                              <p>Type: String</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>MultiAZ</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>A value that specifies whether the DB instance is a Multi-AZ deployment. You can't
+                                 set the AvailabilityZone parameter if the MultiAZ parameter is set to true.
+                              </p>
+
+                              <p>Type: Boolean</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>OptionGroupName</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>Indicates that the DB instance should be associated with the specified option group.</p>
+
+                              <p>Permanent options, such as the TDE option for Oracle Advanced Security TDE, can't
+                                 be removed from an option group, and that option group can't be removed from a DB
+                                 instance once it is associated with a DB instance
+                              </p>
+
+                              <p>Type: String</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>PerformanceInsightsKMSKeyId</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The AWS KMS key identifier for encryption of Performance Insights data. The KMS key
+                                 ID
+                                 is the Amazon Resource Name (ARN), KMS key identifier, or the KMS key alias for the
+                                 KMS
+                                 encryption key.
+                              </p>
+
+                              <p>Type: String</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>PerformanceInsightsRetentionPeriod</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The amount of time, in days, to retain Performance Insights data. Valid values are
+                                 7 or 731 (2 years).
+                              </p>
+
+                              <p>Type: Integer</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>Port</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The port number on which the database accepts connections.</p>
+
+                              <p>
+                                 <b>MySQL</b>
+
+                              </p>
+
+                              <p>
+                                 Default: <code class="code">3306</code>
+
+                              </p>
+
+                              <p>
+                                 Valid Values: <code class="code">1150-65535</code>
+
+                              </p>
+
+                              <p>Type: Integer</p>
+
+                              <p>
+                                 <b>MariaDB</b>
+
+                              </p>
+
+                              <p>
+                                 Default: <code class="code">3306</code>
+
+                              </p>
+
+                              <p>
+                                 Valid Values: <code class="code">1150-65535</code>
+
+                              </p>
+
+                              <p>Type: Integer</p>
+
+                              <p>
+                                 <b>PostgreSQL</b>
+
+                              </p>
+
+                              <p>
+                                 Default: <code class="code">5432</code>
+
+                              </p>
+
+                              <p>
+                                 Valid Values: <code class="code">1150-65535</code>
+
+                              </p>
+
+                              <p>Type: Integer</p>
+
+                              <p>
+                                 <b>Oracle</b>
+
+                              </p>
+
+                              <p>
+                                 Default: <code class="code">1521</code>
+
+                              </p>
+
+                              <p>
+                                 Valid Values: <code class="code">1150-65535</code>
+
+                              </p>
+
+                              <p>
+                                 <b>SQL Server</b>
+
+                              </p>
+
+                              <p>
+                                 Default: <code class="code">1433</code>
+
+                              </p>
+
+                              <p>
+                                 Valid Values: <code class="code">1150-65535</code> except for <code class="code">1434</code>, <code class="code">3389</code>, <code class="code">47001</code>,
+                                 <code class="code">49152</code>, and <code class="code">49152</code> through <code class="code">49156</code>.
+
+                              </p>
+
+                              <p>
+                                 <b>Amazon Aurora</b>
+
+                              </p>
+
+                              <p>
+                                 Default: <code class="code">3306</code>
+
+                              </p>
+
+                              <p>
+                                 Valid Values: <code class="code">1150-65535</code>
+
+                              </p>
+
+                              <p>Type: Integer</p>
+
+                              <p>Type: Integer</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>PreferredBackupWindow</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>
+                                 The daily time range during which automated backups are created
+                                 if automated backups are enabled,
+                                 using the <code class="code">BackupRetentionPeriod</code> parameter.
+                                 For more information, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups.BackupWindow">The Backup Window</a> in the <em>Amazon RDS User Guide</em>.
+
+                              </p>
+
+                              <p>
+                                 <b>Amazon Aurora</b>
+
+                              </p>
+
+                              <p>Not applicable. The daily time range for creating automated backups is managed by
+                                 the DB cluster. For more information, see <a href="API_CreateDBCluster.html">CreateDBCluster</a>.
+                              </p>
+
+                              <p>
+                                 The default is a 30-minute window selected at random from an
+                                 8-hour block of time for each AWS Region.
+                                 To see the time blocks available, see
+                                 <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html#AdjustingTheMaintenanceWindow">
+                                    Adjusting the Preferred DB Instance Maintenance Window</a> in the <em>Amazon RDS User Guide</em>.
+
+                              </p>
+
+                              <p>Constraints:</p>
+
+                              <div class="itemizedlist">
+
+
+
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>Must be in the format <code class="code">hh24:mi-hh24:mi</code>.
+                                       </p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Must be in Universal Coordinated Time (UTC).</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Must not conflict with the preferred maintenance window.</p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>Must be at least 30 minutes.</p>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>Type: String</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>PreferredMaintenanceWindow</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The time range each week during which system maintenance can occur,
+                                 in Universal Coordinated Time (UTC).
+                                 For more information, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html#Concepts.DBMaintenance">Amazon RDS Maintenance Window</a>.
+
+                              </p>
+
+                              <p>
+                                 Format: <code class="code">ddd:hh24:mi-ddd:hh24:mi</code>
+
+                              </p>
+
+                              <p>The default is a 30-minute window selected at random from an
+                                 8-hour block of time for each AWS Region, occurring on a random day of the
+                                 week.
+
+                              </p>
+
+                              <p>Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun.</p>
+
+                              <p>Constraints: Minimum 30-minute window.</p>
+
+                              <p>Type: String</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>ProcessorFeatures.ProcessorFeature.N</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The number of CPU cores and the number of threads per core for the DB instance class
+                                 of the DB instance.
+                              </p>
+
+                              <p>Type: Array of <a href="API_ProcessorFeature.html">ProcessorFeature</a> objects
+                              </p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>PromotionTier</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>A value that specifies the order in which an Aurora Replica is promoted to the primary
+                                 instance
+                                 after a failure of the existing primary instance. For more information,
+                                 see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.html#Aurora.Managing.FaultTolerance">
+                                    Fault Tolerance for an Aurora DB Cluster</a> in the <em>Amazon Aurora User Guide</em>.
+
+                              </p>
+
+                              <p>Default: 1</p>
+
+                              <p>Valid Values: 0 - 15</p>
+
+                              <p>Type: Integer</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>PubliclyAccessible</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>Specifies the accessibility options for the DB instance. A value of true specifies
+                                 an Internet-facing instance with a publicly resolvable DNS name, which resolves to
+                                 a public IP address. A value of false specifies an internal instance with a DNS name
+                                 that resolves to a private IP address.
+                              </p>
+
+                              <p>Default: The default behavior varies depending on whether <code class="code">DBSubnetGroupName</code> is specified.
+                              </p>
+
+                              <p>If <code class="code">DBSubnetGroupName</code> is not specified, and <code class="code">PubliclyAccessible</code> is not specified, the following applies:
+                              </p>
+
+                              <div class="itemizedlist">
+
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>If the default VPC in the target region doesn’t have an Internet gateway attached
+                                          to it, the DB instance is private.
+                                       </p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>If the default VPC in the target region has an Internet gateway attached to it, the
+                                          DB instance is public.
+                                       </p>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>If <code class="code">DBSubnetGroupName</code> is specified, and <code class="code">PubliclyAccessible</code> is not specified, the following applies:
+                              </p>
+
+                              <div class="itemizedlist">
+
+
+
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+
+                                       <p>If the subnets are part of a VPC that doesn’t have an Internet gateway attached to
+                                          it, the DB instance is private.
+                                       </p>
+
+                                    </li>
+                                    <li class="listitem">
+
+                                       <p>If the subnets are part of a VPC that has an Internet gateway attached to it, the
+                                          DB instance is public.
+                                       </p>
+
+                                    </li>
+                                 </ul>
+                              </div>
+
+                              <p>Type: Boolean</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>StorageEncrypted</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>Specifies whether the DB instance is encrypted.</p>
+
+                              <p>
+                                 <b>Amazon Aurora</b>
+
+                              </p>
+
+                              <p>Not applicable. The encryption for DB instances is managed by
+                                 the DB cluster. For more information, see <a href="API_CreateDBCluster.html">CreateDBCluster</a>.
+                              </p>
+
+                              <p>Default: false</p>
+
+                              <p>Type: Boolean</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>StorageType</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>Specifies the storage type to be associated with the DB instance.</p>
+
+                              <p>
+                                 Valid values: <code class="code">standard | gp2 | io1</code>
+
+                              </p>
+
+                              <p>
+                                 If you specify <code class="code">io1</code>, you must also include a value for the
+                                 <code class="code">Iops</code> parameter.
+
+                              </p>
+
+                              <p>
+                                 Default: <code class="code">io1</code> if the <code class="code">Iops</code> parameter
+                                 is specified, otherwise <code class="code">standard</code>
+
+                              </p>
+
+                              <p>Type: String</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>Tags.Tag.N</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>A list of tags.
+                                 For more information, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html">Tagging Amazon RDS Resources</a> in the <em>Amazon RDS User Guide.</em>
+
+                              </p>
+
+                              <p>Type: Array of <a href="API_Tag.html">Tag</a> objects
+                              </p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>TdeCredentialArn</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The ARN from the key store with which to associate the instance for TDE encryption.</p>
+
+                              <p>Type: String</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>TdeCredentialPassword</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The password for the given ARN from the key store in order to access the device.</p>
+
+                              <p>Type: String</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>Timezone</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The time zone of the DB instance.
+                                 The time zone parameter is currently supported only by
+                                 <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone">Microsoft SQL Server</a>.
+
+                              </p>
+
+                              <p>Type: String</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>VpcSecurityGroupIds.VpcSecurityGroupId.N</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>A list of Amazon EC2 VPC security groups to associate with this DB instance.</p>
+
+                              <p>
+                                 <b>Amazon Aurora</b>
+
+                              </p>
+
+                              <p>Not applicable. The associated list of EC2 VPC security groups is managed by
+                                 the DB cluster. For more information, see <a href="API_CreateDBCluster.html">CreateDBCluster</a>.
+                              </p>
+
+                              <p>Default: The default EC2 VPC security group for the DB subnet group's VPC.</p>
+
+                              <p>Type: Array of strings</p>
+
+                              <p>Required: No</p>
+
+                           </dd>
+
+                        </dl>
+                     </div>
+
+
+                     <h2 id="API_CreateDBInstance_ResponseElements">Response Elements</h2>
+
+                     <p>The following element is returned by the service.</p>
+
+                     <div class="variablelist">
+
+
+                        <dl>
+
+                           <dt><span class="term">
+                                 <b>DBInstance</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>Contains the details of an Amazon RDS DB instance.
+
+                              </p>
+
+                              <p>This data type is used as a response element in the <a href="API_DescribeDBInstances.html">DescribeDBInstances</a> action.
+
+                              </p>
+
+                              <p>Type: <a href="API_DBInstance.html">DBInstance</a> object
+                              </p>
+
+                           </dd>
+
+                        </dl>
+                     </div>
+
+
+                     <h2 id="API_CreateDBInstance_Errors">Errors</h2>
+
+                     <p>For information about the errors that are common to all actions, see <a href="CommonErrors.html">Common Errors</a>.
+                     </p>
+
+                     <div class="variablelist">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <dl>
+
+                           <dt><span class="term">
+                                 <b>AuthorizationNotFound</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The specified CIDRIP or Amazon EC2 security group isn't authorized for the
+                                 specified DB security group.
+                              </p>
+
+                              <p>RDS also may not be authorized by using IAM to perform necessary actions on your
+                                 behalf.
+                              </p>
+
+                              <p>HTTP Status Code: 404</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>BackupPolicyNotFoundFault</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>
+                                 <em>This error has been deprecated.</em>
+
+                              </p>
+
+                              <p>HTTP Status Code: 404</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>DBClusterNotFoundFault</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>
+                                 <em>DBClusterIdentifier</em> doesn't refer to an existing DB cluster.
+
+                              </p>
+
+                              <p>HTTP Status Code: 404</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>DBInstanceAlreadyExists</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The user already has a DB instance with the given identifier.</p>
+
+                              <p>HTTP Status Code: 400</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>DBParameterGroupNotFound</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>
+                                 <em>DBParameterGroupName</em> doesn't refer to an
+                                 existing DB parameter group.
+
+                              </p>
+
+                              <p>HTTP Status Code: 404</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>DBSecurityGroupNotFound</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>
+                                 <em>DBSecurityGroupName</em> doesn't refer to an existing DB security group.
+
+                              </p>
+
+                              <p>HTTP Status Code: 404</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>DBSubnetGroupDoesNotCoverEnoughAZs</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>Subnets in the DB subnet group should cover at least two Availability Zones unless
+                                 there is only one Availability Zone.
+                              </p>
+
+                              <p>HTTP Status Code: 400</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>DBSubnetGroupNotFoundFault</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>
+                                 <em>DBSubnetGroupName</em> doesn't refer to an existing DB subnet group.
+
+                              </p>
+
+                              <p>HTTP Status Code: 404</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>DomainNotFoundFault</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>
+                                 <em>Domain</em> doesn't refer to an existing Active Directory domain.
+
+                              </p>
+
+                              <p>HTTP Status Code: 404</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>InstanceQuotaExceeded</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The request would result in the user exceeding the allowed number of DB
+                                 instances.
+                              </p>
+
+                              <p>HTTP Status Code: 400</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>InsufficientDBInstanceCapacity</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The specified DB instance class isn't available in the specified Availability
+                                 Zone.
+                              </p>
+
+                              <p>HTTP Status Code: 400</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>InvalidDBClusterStateFault</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The requested operation can't be performed while the cluster is in this state.</p>
+
+                              <p>HTTP Status Code: 400</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>InvalidSubnet</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The requested subnet is invalid, or multiple subnets were requested that are not all
+                                 in a common VPC.
+                              </p>
+
+                              <p>HTTP Status Code: 400</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>InvalidVPCNetworkStateFault</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The DB subnet group doesn't cover all Availability Zones after it's
+                                 created because of users' change.
+                              </p>
+
+                              <p>HTTP Status Code: 400</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>KMSKeyNotAccessibleFault</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>An error occurred accessing an AWS KMS key.</p>
+
+                              <p>HTTP Status Code: 400</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>OptionGroupNotFoundFault</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The specified option group could not be found.</p>
+
+                              <p>HTTP Status Code: 404</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>ProvisionedIopsNotAvailableInAZFault</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>Provisioned IOPS not available in the specified Availability Zone.</p>
+
+                              <p>HTTP Status Code: 400</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>StorageQuotaExceeded</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>The request would result in the user exceeding the allowed amount of storage
+                                 available across all DB instances.
+                              </p>
+
+                              <p>HTTP Status Code: 400</p>
+
+                           </dd>
+
+
+                           <dt><span class="term">
+                                 <b>StorageTypeNotSupported</b>
+                                 </span></dt>
+
+                           <dd>
+
+                              <p>Storage of the <em>StorageType</em> specified can't be associated
+                                 with the DB instance.
+                              </p>
+
+                              <p>HTTP Status Code: 400</p>
+
+                           </dd>
+
+                        </dl>
+                     </div>
+
+
+                     <h2 id="API_CreateDBInstance_Examples">Example</h2>
+
+
+                     <h3 id="API_CreateDBInstance_Example_1"></h3>
+
+
+                     <h4 id="API_CreateDBInstance_Example_1_Request">Sample Request</h4>
+                     <pre class="programlisting"><div class="code-btn-container"><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight ">
+https://rds.us-east-1.amazonaws.com/
+   ?Action=CreateDBInstance
+   &amp;AllocatedStorage=15
+   &amp;DBInstanceClass=db.m1.large
+   &amp;DBInstanceIdentifier=myawsuser-dbi01
+   &amp;Engine=MySQL
+   &amp;MasterUserPassword=&lt;password&gt;
+   &amp;MasterUsername=myawsuser
+   &amp;SignatureMethod=HmacSHA256
+   &amp;SignatureVersion=4
+   &amp;Version=2014-09-01
+   &amp;X-Amz-Algorithm=AWS4-HMAC-SHA256
+   &amp;X-Amz-Credential=AKIADQKE4SARGYLE/20140424/us-east-1/rds/aws4_request
+   &amp;X-Amz-Date=20140424T194844Z
+   &amp;X-Amz-SignedHeaders=content-type;host;user-agent;x-amz-content-sha256;x-amz-date
+   &amp;X-Amz-Signature=bee4aabc750bf7dad0cd9e22b952bd6089d91e2a16592c2293e532eeaab8bc77
+
+</code></pre>
+
+
+                     <h4 id="API_CreateDBInstance_Example_1_Response">Sample Response</h4>
+                     <pre class="programlisting"><div class="code-btn-container"><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight ">
+&lt;CreateDBInstanceResponse xmlns="http://rds.amazonaws.com/doc/2014-09-01/"&gt;
+  &lt;CreateDBInstanceResult&gt;
+    &lt;DBInstance&gt;
+      &lt;BackupRetentionPeriod&gt;7&lt;/BackupRetentionPeriod&gt;
+      &lt;DBInstanceStatus&gt;creating&lt;/DBInstanceStatus&gt;
+      &lt;MultiAZ&gt;false&lt;/MultiAZ&gt;
+      &lt;VpcSecurityGroups/&gt;
+      &lt;DBInstanceIdentifier&gt;myawsuser-dbi01&lt;/DBInstanceIdentifier&gt;
+
+      &lt;PreferredBackupWindow&gt;03:50-04:20&lt;/PreferredBackupWindow&gt;
+      &lt;PreferredMaintenanceWindow&gt;wed:06:38-wed:07:08&lt;/PreferredMaintenanceWindow&gt;
+      &lt;ReadReplicaDBInstanceIdentifiers/&gt;
+      &lt;Engine&gt;mysql&lt;/Engine&gt;
+      &lt;PendingModifiedValues&gt;
+        &lt;MasterUserPassword&gt;****&lt;/MasterUserPassword&gt;
+      &lt;/PendingModifiedValues&gt;
+      &lt;LicenseModel&gt;general-public-license&lt;/LicenseModel&gt;
+      &lt;EngineVersion&gt;5.6.13&lt;/EngineVersion&gt;
+      &lt;DBParameterGroups&gt;
+        &lt;DBParameterGroup&gt;
+          &lt;ParameterApplyStatus&gt;in-sync&lt;/ParameterApplyStatus&gt;
+          &lt;DBParameterGroupName&gt;default.mysql5.6&lt;/DBParameterGroupName&gt;
+        &lt;/DBParameterGroup&gt;
+      &lt;/DBParameterGroups&gt;
+      &lt;OptionGroupMemberships&gt;
+        &lt;OptionGroupMembership&gt;
+          &lt;OptionGroupName&gt;default:mysql-5-6&lt;/OptionGroupName&gt;
+          &lt;Status&gt;in-sync&lt;/Status&gt;
+        &lt;/OptionGroupMembership&gt;
+      &lt;/OptionGroupMemberships&gt;
+      &lt;DBSecurityGroups&gt;
+        &lt;DBSecurityGroup&gt;
+          &lt;Status&gt;active&lt;/Status&gt;
+          &lt;DBSecurityGroupName&gt;default&lt;/DBSecurityGroupName&gt;
+        &lt;/DBSecurityGroup&gt;
+      &lt;/DBSecurityGroups&gt;
+      &lt;PubliclyAccessible&gt;true&lt;/PubliclyAccessible&gt;
+      &lt;AutoMinorVersionUpgrade&gt;true&lt;/AutoMinorVersionUpgrade&gt;
+      &lt;AllocatedStorage&gt;15&lt;/AllocatedStorage&gt;
+      &lt;DBInstanceClass&gt;db.m1.large&lt;/DBInstanceClass&gt;
+      &lt;MasterUsername&gt;myawsuser&lt;/MasterUsername&gt;
+    &lt;/DBInstance&gt;
+  &lt;/CreateDBInstanceResult&gt;
+  &lt;lt;ResponseMetadata&gt;
+    &lt;RequestId&gt;523e3218-afc7-11c3-90f5-f90431260ab4&lt;/RequestId&gt;
+  &lt;/ResponseMetadata&gt;
+&lt;/CreateDBInstanceResponse&gt;
+</code></pre>
+
+
+
+                     <h2 id="API_CreateDBInstance_SeeAlso">See Also</h2>
+
+                     <p>For more information about using this API in one of the language-specific AWS SDKs,
+                        see the following:
+                     </p>
+                     <div class="itemizedlist">
+
+
+
+
+
+
+
+
+
+
+
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+
+                              <p>
+                                 <a href="https://docs.aws.amazon.com/goto/aws-cli/rds-2014-10-31/CreateDBInstance">AWS Command Line Interface</a>
+
+                              </p>
+
+                           </li>
+                           <li class="listitem">
+
+                              <p>
+                                 <a href="https://docs.aws.amazon.com/goto/DotNetSDKV3/rds-2014-10-31/CreateDBInstance">AWS SDK for .NET</a>
+
+                              </p>
+
+                           </li>
+                           <li class="listitem">
+
+                              <p>
+                                 <a href="https://docs.aws.amazon.com/goto/SdkForCpp/rds-2014-10-31/CreateDBInstance">AWS SDK for C++</a>
+
+                              </p>
+
+                           </li>
+                           <li class="listitem">
+
+                              <p>
+                                 <a href="https://docs.aws.amazon.com/goto/SdkForGoV1/rds-2014-10-31/CreateDBInstance">AWS SDK for Go</a>
+
+                              </p>
+
+                           </li>
+                           <li class="listitem">
+
+                              <p>
+                                 <a href="https://docs.aws.amazon.com/goto/SdkForGoPilot/rds-2014-10-31/CreateDBInstance">AWS SDK for Go - Pilot</a>
+
+                              </p>
+
+                           </li>
+                           <li class="listitem">
+
+                              <p>
+                                 <a href="https://docs.aws.amazon.com/goto/SdkForJava/rds-2014-10-31/CreateDBInstance">AWS SDK for Java</a>
+
+                              </p>
+
+                           </li>
+                           <li class="listitem">
+
+                              <p>
+                                 <a href="https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rds-2014-10-31/CreateDBInstance">AWS SDK for JavaScript</a>
+
+                              </p>
+
+                           </li>
+                           <li class="listitem">
+
+                              <p>
+                                 <a href="https://docs.aws.amazon.com/goto/SdkForPHPV3/rds-2014-10-31/CreateDBInstance">AWS SDK for PHP V3</a>
+
+                              </p>
+
+                           </li>
+                           <li class="listitem">
+
+                              <p>
+                                 <a href="https://docs.aws.amazon.com/goto/boto3/rds-2014-10-31/CreateDBInstance">AWS SDK for Python</a>
+
+                              </p>
+
+                           </li>
+                           <li class="listitem">
+
+                              <p>
+                                 <a href="https://docs.aws.amazon.com/goto/SdkForRubyV2/rds-2014-10-31/CreateDBInstance">AWS SDK for Ruby V2</a>
+
+                              </p>
+
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+                  <noscript>
+                     <div>
+                        <div>
+                           <div>
+                              <div id="js_error_message">
+                                 <p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p>
+                                 <p>To use the AWS Documentation, Javascript must be enabled. Please refer to your browser's
+                                    Help pages for instructions.
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </noscript>
+                  <div id="main-col-footer">
+                     <div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div>
+                     <div id="next"><a class="awstoc" accesskey="p" href="API_CreateDBClusterSnapshot.html">« Previous </a><a class="awstoc" accesskey="n" href="API_CreateDBInstanceReadReplica.html">Next »</a></div>
+                     <div id="copyright-main-footer">© 2019, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+                  </div>
+               </div>
+            </div>
+            <div id="right-expanded">
+               <div id="right-content-wrapper">
+                  <div id="pagetoc">
+                     <p>On this page:</p>
+                     <ul class="pagetoc">
+                        <li class="pagetoc" name="Request Parameters"><a class="pagetoc" href="#API_CreateDBInstance_RequestParameters">Request Parameters</a></li>
+                        <li class="pagetoc" name="Response Elements"><a class="pagetoc" href="#API_CreateDBInstance_ResponseElements">Response Elements</a></li>
+                        <li class="pagetoc" name="Errors"><a class="pagetoc" href="#API_CreateDBInstance_Errors">Errors</a></li>
+                        <li class="pagetoc" name="Example"><a class="pagetoc" href="#API_CreateDBInstance_Examples">Example</a></li>
+                        <li class="pagetoc" name="See Also"><a class="pagetoc" href="#API_CreateDBInstance_SeeAlso">See Also</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="cookie-notice">
+         <div class="cookie-notice-text">We use cookies to provide and improve our services. By using our site, you consent
+            to cookies. <a href="http://aws.amazon.com/legal/cookies">Learn more</a></div>
+      </div>
+      <div id="footer">
+         <div id="footer_short_fb" class="hide" title="Feedback"><a target="_blank" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=5216b05e-aa75-4b93-a281-7728db5017b1&amp;topic_url=http://docs.aws.amazon.com/en_us/AmazonRDS/latest/APIReference/API_CreateDBInstance.html&amp;hidden_guide_name=API Reference&amp;hidden_api_version=2014-10-31&amp;hidden_file_name=API_CreateDBInstance"><i class="awsdocs-footer-text fa fa-envelope-o"></i></a></div>
+         <div id="footer_toggle" class="mediaobject">
+            <div id="footer_toggle_img" class="awsdocs-footer-text fa fa-caret-down"></div>
+            <div id="footer_toggle_img_collapse" class="hide awsdocs-footer-text fa fa-caret-right"></div>
+         </div>
+         <div id="footer-left"><a class="awsdocs-footer-text" target="_top" href="http://aws.amazon.com/terms">Terms of Use</a><span class="awsdocs-footer-text"> | </span><a class="awsdocs-footer-text" target="_top" href="http://aws.amazon.com/privacy">Privacy</a><span class="awsdocs-footer-text"> | </span><span class="awsdocs-footer-text">© 2019, Amazon Web Services, Inc. or its affiliates. All rights reserved.</span></div>
+         <div id="footer-right">
+            <div id="feedback">
+               <div id="forums"><a id="forum_link" target="_blank" href="http://forums.aws.amazon.com/forum.jspa?forumID=60" class="awsdocs-footer-text">Have a question? Try the Forums.</a></div>
+               <div id="feedback-message" class="awsdocs-footer-text">Did this page help you?</div>
+               <div id="feedback-yesno-buttons"><a class="awstoc btn btn-default" target="_blank" href="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/AmazonRDS/latest/APIReference/API_CreateDBInstance.html">Yes</a><a class="awstoc btn btn-default" target="_blank" href="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/AmazonRDS/latest/APIReference/API_CreateDBInstance.html">No</a></div>
+               <div id="feedback-feedback-button"><a class="awstoc btn btn-default" target="_blank" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=5216b05e-aa75-4b93-a281-7728db5017b1&amp;topic_url=http://docs.aws.amazon.com/en_us/AmazonRDS/latest/APIReference/API_CreateDBInstance.html&amp;hidden_guide_name=API Reference&amp;hidden_api_version=2014-10-31&amp;hidden_file_name=API_CreateDBInstance">Feedback</a></div>
+            </div>
+         </div>
+      </div>
+      <!-- SiteCatalyst code version: H.25.2.
+            Copyright 1996-2012 Adobe, Inc. All Rights Reserved
+            More info available at http://www.omniture.com --><script language="JavaScript" type="text/javascript" src="https://a0.awsstatic.com/s_code/js/1.0/awshome_s_code.js"></script><script language="JavaScript" type="text/javascript">
+         <!--
+
+            // Documentation Service Name
+            s.prop66='Amazon Relational Database Service';
+            s.eVar66='D=c66';
+
+            // Documentation Guide Name
+            s.prop65='API Reference';
+            s.eVar65='D=c65';
+
+            var s_code=s.t();if(s_code)document.write(s_code)//--></script><script language="JavaScript" type="text/javascript">
+         <!--
+                if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+                //--></script><noscript><img src="https://amazonwebservices.d2.sc.omtrdc.net/b/ss/awsamazondev/1/H.25.2--NS/0" height="1" width="1" border="0" alt="" /></noscript>
+      <!--/DO NOT REMOVE/-->
+      <!-- End SiteCatalyst code version: H.25.2. -->
+   </body>
+</html>
