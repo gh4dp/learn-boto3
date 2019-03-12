@@ -59,6 +59,7 @@ if __name__ == "__main__":
     #aconn.create_rds()
     q_html = QueryHTML.QueryHTML('https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstance.html')
     q_html.get_url()
-    q_html.get_tag_data("Required: Yes")
+    #q_html.get_tag_data("Required: Yes")
+    q_html.get_required_params()
 
 
