@@ -18,12 +18,16 @@ class QueryHTML:
         self.soup = None
         self.parser = None
         self.extracted_tags = None
-        list1 = self.URL.split('/')
-        self.page_info = list1[len(list1)-1]
+        self.page_info = None
         self.logMe = loggerObj.logger
+        self.set_url(url)
 
     def set_url(self, URL: str):
+        if URL is None:
+            return
         self.URL = URL
+        list1 = self.URL.split('/')
+        self.page_info = list1[len(list1)-1]
 
     def get_url(self):
         """ Fetches the url and sets interval vars:
@@ -73,12 +77,11 @@ class QueryHTML:
                 indexid = indexid + 1
 
     def get_services_n_regions(self):
-        self.URL = 'https://docs.aws.amazon.com/general/latest/gr/rande.html#rds_region')
+        self.URL = 'https://docs.aws.amazon.com/general/latest/gr/rande.html#rds_region'
         qHTML.get_url()
         if self.soup is None:
             return
         else:
-            h2s = self.soup.find_all('h2')
-            allrs = qHTML.soup.select('main-col-body h2')
+            allrs = qHTML.soup.find_all(True)
             for i, a in enumerate(allrs, start=1):
                 print(i, a)
