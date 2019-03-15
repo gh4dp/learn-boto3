@@ -19,9 +19,8 @@ class AWSServices:
         self.aws_services = {}
 
 
-    def add_service(self, region_name, region, endpoint, protocols):
-        self.servicedetails[region] = AWSServiceDetails(region_name, region, endpoint, protocols)
-
+    def add_service(self, service_name, **kwargs):
+        self.aws_services[service_name] = kwargs
 
     def list_service(self):
         pass
