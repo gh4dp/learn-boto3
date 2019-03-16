@@ -14,12 +14,14 @@ class Driver:
 
     def __init__(self):
         """All classes initialized and called from here"""
+        # Empty objects declared first
         self.logger = LbwAaL.LbwAaL()
+        self.awsservices = AWSServices.AWSServices()
+
         self.qHTML = QueryHTML.QueryHTML(self.logger,None)
         self.get_services_n_regions()
-        self.connectaws = ConnectAWS.ConnectAWS(self.logger, 'dpdrpkri01')
-        self.connectaws.connect()
-        self.aws_services = AWSServices.AWSServices()
+        #self.connectaws = ConnectAWS.ConnectAWS(self.logger, 'dpdrpkri01')
+        #self.connectaws.connect()
 
     def menu(self):
         # Create the menu
@@ -52,12 +54,21 @@ class Driver:
         else:
             all_services = self.qHTML.soup.find_all('h2')
             all_serv_regs = self.qHTML.soup.find_all('div', {'class', 'table'})
-            index_id = 0
+            datarow_index_id = 0
             for a_srvc, a_srvc_reg in zip(all_services, all_serv_regs):
                 #a_srvc_reg = all_serv_regs[0]
-                #pprintpp.pprint(a_srvc_reg)
+                # pprintpp.pprint(a_srvc['id'])
+                # pprintpp.pprint( a_srvc.name)
+                # pprintpp.pprint( a_srvc.contents)
+                print('-'*80)
+                #print('Processing:   ' + str(a_srvc[id]))
+                pprintpp.pprint( ['Processing...' , a_srvc.contents] )
+                # : ' + a_srvc['id'])
+                # pprintpp.pprint('a_srvc.name: ' + a_srvc.name)
+                # pprintpp.pprint('a_srvc.contents: ' + a_srvc.contents)
+                # pprintpp.pprint(a_srvc_reg)
                 table_soup_trs = a_srvc_reg.findAll('tr')
-                #pprintpp.pprint(table_soup_trs[0])
+                # pprintpp.pprint(table_soup_trs[0])
                 regions_dict = dict()
                 # for a_row in  table_soup_trs[0]:
                 #     pprintpp.pprint('Type of t row: ' + str(type(table_soup_trs[0])))
@@ -80,130 +91,37 @@ class Driver:
 
                 # index_id indicates table row index, first row = dict keys, rest values
                 regions_dict = dict()  # get a new dict for a all regions
-                for index_id, a_row in enumerate(table_soup_trs, start=1):
+                datarow_list = table_soup_trs[1:]
+                pprintpp.pprint(datarow_list)
+                for datarow_index_id, a_row in enumerate(datarow_list, start=1):
                     region_dict = dict()   # get a new dict for a new region
                     region_code=''
-                    table_soup_tds = table_soup_trs[index_id].findAll('td')
+                    pprintpp.pprint(table_soup_trs[datarow_index_id].findAll('td'))
+                    table_soup_tds = table_soup_trs[datarow_index_id].findAll('td')
+                    pprintpp.pprint(table_soup_tds)
                     for col_index, a_header in enumerate(table_headers):
                         if a_header == "Region":
                             region_code = table_soup_tds[region_index].contents[0]  # or col_index both same
                         else:
-                            region_dict[a_header] = table_soup_tds[col_index].contents[0]
+                            try:
+                                region_dict[a_header] = table_soup_tds[col_index].contents[0]
+                            except IndexError:
+                                region_dict[a_header] = None
                     # a row processed, a new region is processed.
                     regions_dict[region_code] = region_dict     # assign region_dict to region_code
 
                 # all rows processed for a service, assign regions_dict
-                self.aws_services.add_service(a_srvc, regions_dict)
-
-
-
-                print('Pause.............')
-                """
-
-                for index_id, table_soup_tr in enumerate(table_soup_trs, start=1):
-                    
-
-                table_soup_trs = table_soup.find_all('tr')
-                for a_table_soup_tr in table_soup_trs:
-
-                all_r = all_serv_regs[4].find_all('tr')
-                cols_of_row = a_row.find_all('td')
-                for id3, aCol in enumerate(cols_of_row):
-                    if id3 == region_key_index:
-                        region_key_name = aCol.text.strip()
-                        continue
-                    else:
-                        cols_list.append(aCol.text.strip())
-                        dict_of_region[all_keys[indexid]] = aCol.text.strip()
-                        indexid = indexid + 1
-                self.awsservices_details_dict[region_key_name] = AWSServiceDetails(region_key_name, dict_of_region)
-                index_id = index_id + 1
-
-            #<h2 id="appdiscserv_region">AWS Application Discovery Service</h2>
-            #pat_serviceHeader = '<h2 id="(?P<srvc_code>[a-zA-Z_]*)">(?P<srvc_name>.*)</h2>'
-
-            #mainContent=soup.find_all('div',attrs={'id','main-content'})
-            #div_main_content = self.qHTML.soup.find("div", {"id": "main-content"})
-            #div_main_content = self.qHTML.soup.find("li", "listitem")
-            #rs_allTags = div_main_content.find_all(True)
-
-            rs_allTags = self.qHTML.soup.find_all(True)
-            print('len rs_allTags : ' + str(len(rs_allTags)))
-            prevTagIndex=0  # -1 enumerate start=1:
-            NextTagIndex = 2  # +1 enumerate start=1:
-
-            # import requests, pprintpp, bs4, re
-            # html_obj = open('Sample.html', 'r', encoding='utf-8')
-            # soup = bs4.BeautifulSoup(html_obj, features="lxml")
-            all_services = soup.find_all('h2')
-            all_serv_regs = soup.find_all('div', {'class', 'table'})
-            for a_srvc, a_srv_regions in zip( all_services, all_serv_regs):
-                pprintpp.pprint(indexid)
-                pprintpp.pprint(aT.contents)
-                service_name = tag_aTag.name  # Key of the class
-
-
-
-
-
-
-            for indexId, tag_aTag in enumerate(rs_allTags, start=1):
-                if isinstance(tag_aTag, bs4.element.Tag):
-                    pprintpp.pprint(tag_aTag.decode())
-                    try:
-                        pprintpp.pprint("Tag Id: {0} name: {1} contents: {2} ".format(tag_aTag['id'], tag_aTag.name,
-                                                                                      tag_aTag.contents))
-                    except Exception:
-                        pass
-            #for tag_aTag in rs_allTags:
-                # if isinstance(tag_aTag, bs4.element.NavigableString):
-                #     continue
-                for x1 in range(10):
-                    print()
-                #pprintpp.pprint("Tag Id: {0} name: {1} contents: {2} ".format(tag_aTag['id'], tag_aTag.name, tag_aTag.contents))
-                #print('IndexId: ' + str(indexId) + '; Type of tag_aTag ' + str(type(tag_aTag)) + ' Pause...', )
-                if '_region' in tag_aTag['id']:
-                    service_name = tag_aTag.name  # Key of the class
-                    if not (service_name in self.aws_services.keys()):
-                        self.aws_services[service_name] = AWSServices()
-                    self.awsservices_dict = dict()
-                    self.awsservices_details_dict = dict()
-                    table_of_regions = rs_allTags[NextTagIndex].find('table')
-
-                    # get the keys from the header
-                    # These keys include: RegionName Region	Endpoint Protocol
-                    # Region is our key for dictionary
-                    region_key_index = 0
-                    all_keys = []
-                    row_of_keys = table_of_regions.find_all('th')
-                    for id2, a_key in enumerate(row_of_keys):
-                        all_keys.append(a_key.replace(' ',''))
-                        if a_key == 'Region':
-                            region_key_index = id2
-                    rows_of_regions = table_of_regions.find_all('tr')
-
-                    cols_list = []
-                    indexid = 0
-                    dict_of_regions = dict()
-                    region_key_name = None
-                    for a_row in rows_of_regions:
-                        # Each row gives us a new region and so new dict
-                        dict_of_region = dict()
-
-                        cols_of_row = a_row.find_all('td')
-                        for id3, aCol in enumerate(cols_of_row):
-                            if id3 == region_key_index:
-                                region_key_name = aCol.text.strip()
-                                continue
-                            else:
-                                cols_list.append(aCol.text.strip())
-                                dict_of_region[all_keys[indexid]] = aCol.text.strip()
-                                indexid = indexid + 1
-                        self.awsservices_details_dict[region_key_name] = AWSServiceDetails(region_key_name, dict_of_region)
-                    dict_of_regions[region_key_name] = region_key_name
-                    """
-
-
+                print('-'*80)
+                pprintpp.pprint(a_srvc)
+                pprintpp.pprint(region_dict)
+                # test_dict = { x:x**2 for x in range(5) }
+                # self.awsservices.add_service(serv_code='serv_code',
+                #                              service_desc='service_desc',
+                #                              kwdict=test_dict)
+                self.awsservices.add_service(serv_code = a_srvc['id'],
+                                              service_desc = a_srvc.contents[0],
+                                              kwdict = regions_dict)
+                self.awsservices.list_services_all()
 
 if __name__=="__main__":
     driver = Driver()
