@@ -16,7 +16,7 @@ class Driver:
         """All classes initialized and called from here"""
         # Empty objects declared first
         self.logger = LbwAaL.LbwAaL()
-        self.awsservices = AWSServices.AWSServices()
+        self.awsservices = AWSServices.AWSServices(self.logger)
 
         self.qHTML = QueryHTML.QueryHTML(self.logger,None)
         self.get_services_n_regions()
@@ -56,30 +56,11 @@ class Driver:
             all_serv_regs = self.qHTML.soup.find_all('div', {'class', 'table'})
             datarow_index_id = 0
             for a_srvc, a_srvc_reg in zip(all_services, all_serv_regs):
-                #a_srvc_reg = all_serv_regs[0]
-                # pprintpp.pprint(a_srvc['id'])
-                # pprintpp.pprint( a_srvc.name)
-                # pprintpp.pprint( a_srvc.contents)
-                print('-'*80)
-                #print('Processing:   ' + str(a_srvc[id]))
-                pprintpp.pprint( ['Processing...' , a_srvc.contents] )
-                # : ' + a_srvc['id'])
-                # pprintpp.pprint('a_srvc.name: ' + a_srvc.name)
-                # pprintpp.pprint('a_srvc.contents: ' + a_srvc.contents)
-                # pprintpp.pprint(a_srvc_reg)
                 table_soup_trs = a_srvc_reg.findAll('tr')
-                # pprintpp.pprint(table_soup_trs[0])
                 regions_dict = dict()
-                # for a_row in  table_soup_trs[0]:
-                #     pprintpp.pprint('Type of t row: ' + str(type(table_soup_trs[0])))
-                #     pprintpp.pprint('row: ' + a_row)
-
-                #row 0 provides header, which will be keys to dict
                 table_soup_ths = table_soup_trs[0].findAll('th')
-                #pprintpp.pprint('Type of table_soup_ths: '+str(type(table_soup_ths)))
-                #Very Valueable pprintpp.pprint([row.__dict__ for row in table_soup_trs[0].findAll('th')])
                 table_headers = [ row.contents[0].replace(' ','') for row in table_soup_trs[0].findAll('th')]
-                pprintpp.pprint(table_headers)
+                #pprintpp.pprint(table_headers)
 
                 #find region index key -
                 region_index = 0
@@ -92,13 +73,14 @@ class Driver:
                 # index_id indicates table row index, first row = dict keys, rest values
                 regions_dict = dict()  # get a new dict for a all regions
                 datarow_list = table_soup_trs[1:]
-                pprintpp.pprint(datarow_list)
+                print('-' * 40 + str(a_srvc['id']) + ' ' + str(len(datarow_list)))
+                #pprintpp.pprint(datarow_list)
                 for datarow_index_id, a_row in enumerate(datarow_list, start=1):
                     region_dict = dict()   # get a new dict for a new region
                     region_code=''
-                    pprintpp.pprint(table_soup_trs[datarow_index_id].findAll('td'))
+                    #pprintpp.pprint(table_soup_trs[datarow_index_id].findAll('td'))
                     table_soup_tds = table_soup_trs[datarow_index_id].findAll('td')
-                    pprintpp.pprint(table_soup_tds)
+                    #pprintpp.pprint(table_soup_tds)
                     for col_index, a_header in enumerate(table_headers):
                         if a_header == "Region":
                             region_code = table_soup_tds[region_index].contents[0]  # or col_index both same
@@ -111,18 +93,10 @@ class Driver:
                     regions_dict[region_code] = region_dict     # assign region_dict to region_code
 
                 # all rows processed for a service, assign regions_dict
-                print('-'*80)
-                pprintpp.pprint(a_srvc)
-                pprintpp.pprint(region_dict)
-                # test_dict = { x:x**2 for x in range(5) }
-                # self.awsservices.add_service(serv_code='serv_code',
-                #                              service_desc='service_desc',
-                #                              kwdict=test_dict)
                 self.awsservices.add_service(serv_code = a_srvc['id'],
                                               service_desc = a_srvc.contents[0],
                                               kwdict = regions_dict)
-                self.awsservices.list_services_all()
-
+        self.awsservices.get_regions_for_service('s3')
 if __name__=="__main__":
     driver = Driver()
     #driver.menu()
