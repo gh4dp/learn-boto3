@@ -26,7 +26,7 @@ class Driver:
         self.connectaws.connect()
         self.qHTML = QueryHTML.QueryHTML(self.logger,None)
         self.get_services_n_regions()
-        self.cost_report()
+
     def menu(self):
         # Create the menu
         main_menu = ConsoleMenu("Learn Boto3","Main Menu")
@@ -109,9 +109,6 @@ class Driver:
         cur_session.get_cur_report()
 
     def cost_report(self):
-        a_dict = dict()
-        a_dict['start'] = '2000-01-01'
-        a_dict['end'] = '2100-01-01'
         costrep = CostExplorer.CostExplorer(self.logger, self.connectaws)
         costrep.getcostandusage()
 
