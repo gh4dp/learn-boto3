@@ -1,12 +1,16 @@
 import LbwAaL
 import ConnectAWS
 import QueryHTML
+import CostUsageReporting
 import consolemenu
 import AWSServices, AWSServiceDetails
 import pprintpp
 import bs4
 import MissingTagException
+import CostExplorer
 from consolemenu.items import *
+
+aws_region_codes = set()
 
 
 class Driver:
@@ -18,10 +22,13 @@ class Driver:
         self.logger = LbwAaL.LbwAaL()
         self.awsservices = AWSServices.AWSServices(self.logger)
 
+        self.connectaws = ConnectAWS.ConnectAWS(self.logger, 'dpdrpkri01')
+        self.connectaws.connect()
+
         self.qHTML = QueryHTML.QueryHTML(self.logger,None)
         self.get_services_n_regions()
-        #self.connectaws = ConnectAWS.ConnectAWS(self.logger, 'dpdrpkri01')
-        #self.connectaws.connect()
+        self.cost_report()
+
 
     def menu(self):
         # Create the menu
@@ -91,12 +98,28 @@ class Driver:
                                 region_dict[a_header] = None
                     # a row processed, a new region is processed.
                     regions_dict[region_code] = region_dict     # assign region_dict to region_code
+                    aws_region_codes.add(region_code)
 
-                # all rows processed for a service, assign regions_dict
+                    # all rows processed for a service, assign regions_dict
                 self.awsservices.add_service(serv_code = a_srvc['id'],
                                               service_desc = a_srvc.contents[0],
                                               kwdict = regions_dict)
         self.awsservices.get_regions_for_service('s3')
+        pprintpp.pprint(aws_region_codes)
+
+    def get_costusagereporting(self):
+        cur_session = CostUsageReporting.CostUsageReporting(self.logger, self.connectaws)
+        cur_session.get_cur_report()
+
+    def cost_report(self):
+        a_dict = dict()
+        a_dict['start'] = '2000-01-01'
+        a_dict['end'] = '2100-01-01'
+        costrep = CostExplorer.CostExplorer(self.logger, self.connectaws)
+        costrep.getcostandusage()
+
+
 if __name__=="__main__":
     driver = Driver()
+    driver.cost_report()
     #driver.menu()
