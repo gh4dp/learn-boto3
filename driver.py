@@ -1,12 +1,16 @@
 import LbwAaL
 import ConnectAWS
 import QueryHTML
+import CostUsageReporting
 import consolemenu
 import AWSServices, AWSServiceDetails
 import pprintpp
 import bs4
 import MissingTagException
+import CostExplorer
 from consolemenu.items import *
+
+aws_region_codes = set()
 
 
 class Driver:
@@ -14,13 +18,15 @@ class Driver:
 
     def __init__(self):
         """All classes initialized and called from here"""
+        # Empty objects declared first
         self.logger = LbwAaL.LbwAaL()
-        self.qHTML = QueryHTML.QueryHTML(self.logger,None)
-        self.get_services_n_regions()
+        self.awsservices = AWSServices.AWSServices(self.logger)
+
         self.connectaws = ConnectAWS.ConnectAWS(self.logger, 'dpdrpkri01')
         self.connectaws.connect()
-        self.aws_services = AWSServices.AWSServices()
-
+        self.qHTML = QueryHTML.QueryHTML(self.logger,None)
+        self.get_services_n_regions()
+        self.cost_report()
     def menu(self):
         # Create the menu
         main_menu = ConsoleMenu("Learn Boto3","Main Menu")
@@ -52,18 +58,15 @@ class Driver:
         else:
             all_services = self.qHTML.soup.find_all('h2')
             all_serv_regs = self.qHTML.soup.find_all('div', {'class', 'table'})
-            loop_breaker = 0
+            datarow_index_id = 0
             for a_srvc, a_srvc_reg in zip(all_services, all_serv_regs):
                 table_soup_trs = a_srvc_reg.findAll('tr')
                 regions_dict = dict()
-
-                #row 0 provides header, which will be keys to dict
                 table_soup_ths = table_soup_trs[0].findAll('th')
-
-                #Very Valueable pprintpp.pprint([row.__dict__ for row in table_soup_trs[0].findAll('th')])
                 table_headers = [ row.contents[0].replace(' ','') for row in table_soup_trs[0].findAll('th')]
+                #pprintpp.pprint(table_headers)
 
-                #find region index key - which column is holding regionCode?
+                #find region index key -
                 region_index = 0
                 for a_header in table_headers:
                     if a_header == "Region":
@@ -73,25 +76,46 @@ class Driver:
 
                 # index_id indicates table row index, first row = dict keys, rest values
                 regions_dict = dict()  # get a new dict for a all regions
-                for index_id, a_row in enumerate(table_soup_trs):
+                datarow_list = table_soup_trs[1:]
+                print('-' * 40 + str(a_srvc['id']) + ' ' + str(len(datarow_list)))
+                #pprintpp.pprint(datarow_list)
+                for datarow_index_id, a_row in enumerate(datarow_list, start=1):
                     region_dict = dict()   # get a new dict for a new region
                     region_code=''
-                    table_soup_tds = table_soup_trs[index_id].findAll('td')
+                    #pprintpp.pprint(table_soup_trs[datarow_index_id].findAll('td'))
+                    table_soup_tds = table_soup_trs[datarow_index_id].findAll('td')
+                    #pprintpp.pprint(table_soup_tds)
                     for col_index, a_header in enumerate(table_headers):
                         if a_header == "Region":
                             region_code = table_soup_tds[region_index].contents[0]  # or col_index both same
                         else:
-                            region_dict[a_header] = table_soup_tds[col_index].contents[0]
+                            try:
+                                region_dict[a_header] = table_soup_tds[col_index].contents[0]
+                            except IndexError:
+                                region_dict[a_header] = None
                     # a row processed, a new region is processed.
                     regions_dict[region_code] = region_dict     # assign region_dict to region_code
+                    aws_region_codes.add(region_code)
 
-                # all rows processed for a service, assign regions_dict
-                self.aws_services.add_service(a_srvc, regions_dict)
-                print('Pause.............')
-                loop_breaker = loop_breaker + 1
-                if loop_breaker > 3:
-                    break
+                    # all rows processed for a service, assign regions_dict
+                self.awsservices.add_service(serv_code = a_srvc['id'],
+                                              service_desc = a_srvc.contents[0],
+                                              kwdict = regions_dict)
+        self.awsservices.get_regions_for_service('s3')
+        pprintpp.pprint(aws_region_codes)
+
+    def get_costusagereporting(self):
+        cur_session = CostUsageReporting.CostUsageReporting(self.logger, self.connectaws)
+        cur_session.get_cur_report()
+
+    def cost_report(self):
+        a_dict = dict()
+        a_dict['start'] = '2000-01-01'
+        a_dict['end'] = '2100-01-01'
+        costrep = CostExplorer.CostExplorer(self.logger, self.connectaws)
+        costrep.getcostandusage()
 
 if __name__=="__main__":
     driver = Driver()
+    driver.cost_report()
     #driver.menu()
