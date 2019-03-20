@@ -8,6 +8,7 @@ import pprintpp
 import bs4
 import MissingTagException
 import CostExplorer
+import S3Clinet
 from consolemenu.items import *
 
 aws_region_codes = set()
@@ -27,14 +28,20 @@ class Driver:
         self.qHTML = QueryHTML.QueryHTML(self.logger,None)
         self.get_services_n_regions()
 
+        #Clients
+        self.s3client = S3Clinet.S3Client(self.logger, self.connectaws)
+        self.ceclient = CostExplorer.CostExplorer(self.logger, self.connectaws)
+
     def menu(self):
         # Create the menu
         main_menu = ConsoleMenu("Learn Boto3","Main Menu")
         S3menu = MenuItem("S3 Functions")
+        CEmenu = MenuItem("Cost Estimator Functions")
         RDSmenu = MenuItem("RDS Functions")
         EC2menu = MenuItem("EC2 Functions")
 
         # Once we're done creating them, we just add the items to the menu
+        menu.append_item(CEmenu )
         menu.append_item(S3menu)
         menu.append_item(RDSmenu)
         menu.append_item(EC2menu)
@@ -109,8 +116,10 @@ class Driver:
         cur_session.get_cur_report()
 
     def cost_report(self):
-        costrep = CostExplorer.CostExplorer(self.logger, self.connectaws)
-        costrep.getcostandusage()
+        self.ceclient.getcostandusage()
+
+    def get_s3_buckets(self):
+        self.s3client.get_s3_buckets()
 
 if __name__=="__main__":
     driver = Driver()
