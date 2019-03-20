@@ -10,7 +10,7 @@ class CostUsageReporting:
 
     def __init__(self, loggerobj: LbwAaL, sessionobj: ConnectAWS):
         self.logMe = loggerobj.logger
-        self.client = sessionobj.Session.client('cur')
+        self.client = sessionobj.Session.client('cur',region_name='us-west-2')
 
     def get_cur_report(self):
         next_token = str(secrets.token_hex(8))

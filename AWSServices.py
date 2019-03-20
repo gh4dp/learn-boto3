@@ -18,12 +18,9 @@ class AWSServices:
         """
         self.aws_services = {}
         self.log_me = loggerObj.logger
+        self.aws_region_codes = set()
 
     def add_service(self, serv_code, service_desc,  kwdict):
-        if serv_code not in self.aws_services.keys():
-            print('Key not found, adding')
-        else:
-            print('Key found, overwritting')
         new_list = list()
         new_list.append(service_desc)
         new_list.append(kwdict)
@@ -37,25 +34,26 @@ class AWSServices:
 
     def list_service(self, serv_code):
         for aKey in self.aws_services.keys():
-            print(str(type(aKey)) + aKey)
+            #print(str(type(aKey)) + aKey)
+            pass
         pprintpp.pprint(self.aws_services.keys())
         search_serv_code = serv_code + "_region"
         if search_serv_code  in self.aws_services.keys():
-            print(search_serv_code)
-            pprintpp.pprint(self.aws_services[search_serv_code ])
+            #print(search_serv_code)
+            #pprintpp.pprint(self.aws_services[search_serv_code ])
             log_str = str([search_serv_code, str(self.aws_services[search_serv_code][0]), str(self.aws_services[search_serv_code][1])])
             self.log_me.info( log_str )
 
     def list_service_keys(self):
         self.log_me.info('Listing all service keys.......................................')
         for aKey in self.aws_services.keys():
-            print(aKey)
+            #print(aKey)
             self.log_me.info( aKey )
 
     def get_regions_for_service(self, serv_code):
         search_serv_code = serv_code + "_region"
         if search_serv_code in self.aws_services.keys():
-            print(search_serv_code)
+            #print(search_serv_code)
             #pprintpp.pprint(self.aws_services[search_serv_code])
             regions_dict = self.aws_services[search_serv_code][1]   # 0: serv desc, 1: regions dict
             for a_region in regions_dict:

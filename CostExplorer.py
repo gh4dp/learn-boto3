@@ -4,14 +4,33 @@ import pprintpp
 import datetime
 from datetime import timedelta
 import pandas as pd
+from consolemenu import SelectionMenu
+import consolemenu
 
 class CostExplorer:
     """Provides cost details"""
 
     def __init__(self, loggerobj: LbwAaL, sessionobj: ConnectAWS):
         self.logMe = loggerobj.logger
-        self.client = sessionobj.Session.client('ce')
+        self.client = sessionobj.Session.client('ce',region_name='us-west-2')
         self.response = None
+        self.selected_menu = None
+
+    def show_menu(self):
+        list_ops=['Get Cost Usage', 'Show_cost_by_month_table', 'show_cost_by_service']
+        self.selected_menu = consolemenu.SelectionMenu.get_selection(list_ops)
+        while (self.selected_menu != len(list_ops)):
+            if self.selected_menu == 0:
+                self.getcostandusage()
+            elif self.selected_menu == 1:
+                self.show_cost_by_month_table()
+            elif self.selected_menu == 2:
+                self.show_cost_by_service()
+            else:
+                print('Exiting...')
+                break
+            input("Press Enter to continue...")
+            self.selected_menu = consolemenu.SelectionMenu.get_selection(list_ops)
 
     def getcostandusage(self):
         """Provide time period as start,end date dictionary or will default to 1900 to 2500"""
@@ -30,13 +49,17 @@ class CostExplorer:
                                                            'UnblendedCost',
                                                        ],
                                                        GroupBy=group_by)
-        self.show_cost_by_service()
+        pprintpp.pprint(self.response)
 
     def show_cost_by_month_table(self):
+        if (self.response == None):
+            self.getcostandusage()
         new_dict = self.response['ResultsByTime']
         pprintpp.pprint(new_dict)
 
     def show_cost_by_service(self):
+        if (self.response == None):
+            self.getcostandusage()
         print()
         print()
         print('.'*20 + 'AWS Cost report by service' + '.'*20)
