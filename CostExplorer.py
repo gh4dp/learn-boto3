@@ -36,14 +36,16 @@ class CostExplorer:
         pprintpp.pprint(new_dict)
 
     def show_cost_by_service(self):
-        print('.' * 50)
+        print()
+        print()
+        print('.'*20 + 'AWS Cost report by service' + '.'*20)
+        self.logMe.info('.'*20 + 'AWS Cost report by service' + '.'*20)
         new_dict = self.response['ResultsByTime']
         show_dict_from = new_dict[len(new_dict)-1]['Groups']
-        make_a_list = list()
-        make_a_list.append(['Index', 'AWS Service', 'Cost-USD'])
         for indexid, an_item in enumerate(show_dict_from, start=1):
             print('{:<5} {:<60} {:<10}'.format(str(indexid), str(an_item['Keys']),
                                                str(an_item['Metrics']['UnblendedCost']['Amount'])))
-            make_a_list.append([str(indexid), str(an_item['Keys']),str(an_item['Metrics']['UnblendedCost']['Amount'])])
-
-        print('.' * 50)
+            self.logMe.info('{:<5} {:<60} {:<10}'.format(str(indexid), str(an_item['Keys']),
+                                               str(an_item['Metrics']['UnblendedCost']['Amount'])))
+        print('.'*30 + 'Done' +'.'*30)
+        self.logMe.info('.'*30 + 'Done' +'.'*30)
