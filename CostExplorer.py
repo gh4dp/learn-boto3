@@ -3,6 +3,7 @@ import LbwAaL
 import pprintpp
 import datetime
 from datetime import timedelta
+import pandas as pd
 
 class CostExplorer:
     """Provides cost details"""
@@ -41,11 +42,9 @@ class CostExplorer:
         print('.'*20 + 'AWS Cost report by service' + '.'*20)
         self.logMe.info('.'*20 + 'AWS Cost report by service' + '.'*20)
         new_dict = self.response['ResultsByTime']
-        show_dict_from = new_dict[len(new_dict)-1]['Groups']
-        for indexid, an_item in enumerate(show_dict_from, start=1):
-            print('{:<5} {:<60} {:<10}'.format(str(indexid), str(an_item['Keys']),
-                                               str(an_item['Metrics']['UnblendedCost']['Amount'])))
-            self.logMe.info('{:<5} {:<60} {:<10}'.format(str(indexid), str(an_item['Keys']),
-                                               str(an_item['Metrics']['UnblendedCost']['Amount'])))
+        pd_df = pd.DataFrame(new_dict[len(new_dict)-1]['Groups'])
+        print(pd_df)
+        self.logMe.info(pd_df)
+        print('.' * 50)
         print('.'*30 + 'Done' +'.'*30)
         self.logMe.info('.'*30 + 'Done' +'.'*30)
