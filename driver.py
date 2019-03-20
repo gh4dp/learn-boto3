@@ -85,13 +85,10 @@ class Driver:
                 regions_dict = dict()  # get a new dict for a all regions
                 datarow_list = table_soup_trs[1:]
                 print('-' * 40 + str(a_srvc['id']) + ' ' + str(len(datarow_list)))
-                #pprintpp.pprint(datarow_list)
                 for datarow_index_id, a_row in enumerate(datarow_list, start=1):
                     region_dict = dict()   # get a new dict for a new region
                     region_code=''
-                    #pprintpp.pprint(table_soup_trs[datarow_index_id].findAll('td'))
                     table_soup_tds = table_soup_trs[datarow_index_id].findAll('td')
-                    #pprintpp.pprint(table_soup_tds)
                     for col_index, a_header in enumerate(table_headers):
                         if a_header == "Region":
                             region_code = table_soup_tds[region_index].contents[0]  # or col_index both same
