@@ -90,7 +90,6 @@ class Driver:
                 regions_dict = dict()
                 table_soup_ths = table_soup_trs[0].findAll('th')
                 table_headers = [ row.contents[0].replace(' ','') for row in table_soup_trs[0].findAll('th')]
-                #pprintpp.pprint(table_headers)
 
                 #find region index key -
                 region_index = 0
@@ -127,7 +126,6 @@ class Driver:
                                               service_desc = a_srvc.contents[0],
                                               kwdict = regions_dict)
 
-        #pprintpp.pprint('Trying vto print driver.aws_region_codes 2:')
         pprintpp.pprint(self.awsservices.aws_region_codes)
 
     def get_costusagereporting(self):
