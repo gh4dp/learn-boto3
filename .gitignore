@@ -102,3 +102,21 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+
+
+.idea/encodings.xml
+.idea/learn-boto3.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/workspace.xml
+Pipfile
+Pipfile.lock
+SampleConsoleMenu.py
+SampleConsoleMenu2.py
+Untitled.ipynb
+Untitled1.ipynb
+Untitled2.ipynb
+foSample.html.txt
+hello.txt
+learn-boto3.log

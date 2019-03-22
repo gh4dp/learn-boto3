@@ -19,6 +19,16 @@ class AWSServices:
         self.aws_services = {}
         self.log_me = loggerObj.logger
         self.aws_region_codes = set()
+        self.exclude_regions = set()
+        self.exclude_regions.add('ap-northeast-1')
+        self.exclude_regions.add('ap-northeast-2')
+        self.exclude_regions.add('ap-northeast-3')
+        self.exclude_regions.add('ap-south-1')
+        self.exclude_regions.add('ap-southeast-1')
+        self.exclude_regions.add('ap-southeast-2')
+        self.exclude_regions.add('ca-central-1')
+        self.exclude_regions.add('cn-north-1')
+        self.exclude_regions.add('cn-northwest-1')
 
     def add_service(self, serv_code, service_desc,  kwdict):
         new_list = list()

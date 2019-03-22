@@ -15,16 +15,8 @@ class EC2Client:
         self.response = None
         self.selected_menu = None
         self.awsservices = awsservices
-        self.exclude_regions = set()
-        self.exclude_regions.add('ap-northeast-1')
-        self.exclude_regions.add('ap-northeast-2')
-        self.exclude_regions.add('ap-northeast-3')
-        self.exclude_regions.add('ap-south-1')
-        self.exclude_regions.add('ap-southeast-1')
-        self.exclude_regions.add('ap-southeast-2')
-        self.exclude_regions.add('ca-central-1')
-        self.exclude_regions.add('cn-north-1')
-        self.exclude_regions.add('cn-northwest-1')
+        self.exclude_regions = awsservices.exclude_regions
+
 
     def show_menu(self):
         list_ops=['Get EC2 instances']

@@ -10,6 +10,8 @@ import MissingTagException
 import CostExplorer
 import S3Clinet
 import EC2Client
+import AWSLambda
+
 import consolemenu
 from consolemenu.items import *
 
@@ -39,14 +41,15 @@ class Driver:
         self.cusclient = CostUsageReporting.CostUsageReporting(self.logger, self.connectaws)
         self.ec2client = EC2Client.EC2Client(self.logger, self.connectaws, self.awsservices)
         self.rdsclient = self.s3client # just playing
-
+        self.lambdaclient = AWSLambda.AWSLambda(self.logger, self.connectaws, self.awsservices)
 
     def menu(self):
         main_menu_items = ["S3 Functions",
                            "Cost Explorer Functions",
                            "Cost Usage Reporting Functions",
                            "EC2 Functions",
-                           "RDS Functions"]
+                           "RDS Functions",
+                           "Lambda Functions"]
 
         main_menu_selection = consolemenu.SelectionMenu.get_selection(main_menu_items)
         while main_menu_selection != len(main_menu_items):
@@ -61,11 +64,12 @@ class Driver:
                 self.ec2client.show_menu()
             elif main_menu_selection == 4:
                 pass
+            elif main_menu_selection == 5:
+                self.lambdaclient.show_menu()
             else:
                 print ('Exiting now...')
                 break
             main_menu_selection = consolemenu.SelectionMenu.get_selection(main_menu_items)
-
 
     def get_services_n_regions_via_re(self):
         self.qHTML.set_url('https://docs.aws.amazon.com/general/latest/gr/rande.html')
